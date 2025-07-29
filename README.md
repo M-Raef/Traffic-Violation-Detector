@@ -1,87 +1,99 @@
-Traffic Violation Detection System 🚦📸
-An advanced, automated traffic violation detection system using modern computer vision and machine learning technologies. This system can detect red light and speed violations in real-time, identify vehicles and their license plates, collect visual evidence, and store data systematically.
+# Traffic Violation Detection System 🚦📸
 
-Overview
-This project uses the YOLOv11 deep learning model for vehicle and license plate detection, integrated with the SORT algorithm for object tracking. The system analyzes traffic light states using HSV color space and monitors vehicle timing through predefined Regions of Interest (ROI).
+An advanced, automated traffic violation detection system using modern computer vision and machine learning technologies. This system detects **red light** and **speed** violations in real time, identifies vehicles and their license plates, collects visual evidence, and stores data systematically.
 
-FeFeatures
-🚗 Real-time Traffic Violation Detection
-Red light violation detection
+---
 
-Speed violation detection
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [GUI Details](#gui-details)
+  - [Red Light Violation Interface](#red-light-violation-interface)
+  - [Speed Violation Interface](#speed-violation-interface)
+  - [Violation Image Storage](#violation-image-storage)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Database Schema](#database-schema)
+- [Acknowledgments](#acknowledgments)
 
-Automatic license plate recognition (ALPR)
+---
 
-🖥️ Graphical User Interface (GUI)
-Easy setup and configuration
+## Overview
+This project uses the **YOLOv11** deep learning model for vehicle and license plate detection, integrated with the **SORT** algorithm for object tracking.  
+The system analyzes traffic light states using **HSV color space** and monitors vehicle timing through predefined **Regions of Interest (ROI)**.
 
-Real-time results display
+---
 
-Violation review and processing
+## Features
+### 🚗 Real-time Traffic Violation Detection
+- Red light violation detection  
+- Speed violation detection  
+- Automatic license plate recognition (ALPR)
 
-Interactive ROI selection
+### 🖥️ Graphical User Interface (GUI)
+- Easy setup and configuration  
+- Real-time results display  
+- Violation review and processing  
+- Interactive ROI selection
 
-💾 Data Management
-SQLite database for violation storage
+### 💾 Data Management
+- SQLite database for violation storage  
+- Automatic evidence collection  
+- Violation image enhancement  
+- Comprehensive reporting
 
-Automatic evidence collection
+---
 
-Violation image enhancement
+## GUI Details
 
-Comprehensive reporting
+### Red Light Violation Interface
+- **Input Video**: Select the input video file.  
+- **Output Video**: Choose the file where the processed video is saved.  
+- **YOLO Model**: Select the trained object detection model (`.pt`).  
+- **Violation Type**: Choose **“Red Light Violation”**.  
+- **ROI (Region of Interest)**: Manually define the intersection area by selecting **4 corner points**.
 
-GUI Details
-1. Red Light Violation Detection Interface
-Input Video: Select the input video file
+> The system analyzes vehicles entering the selected region during a red light and flags violations.
 
-Output Video: Choose the file where processed video will be saved
+---
 
-YOLO Model: Select the trained object detection model (.pt file)
+### Speed Violation Interface
+- **Input/Output Video & YOLO Model**: Same selection as above.  
+- **Violation Type**: Choose **“Speed Violation”**.  
+- **ROI (Speed ROI)**: Define **entry** and **exit** lines.  
+- **Speed Parameters**:  
+  - **Speed Limit (km/h)**: Set the maximum allowed speed.  
+  - **Distance Between Lines (m)**: Enter the distance between entry and exit lines.
 
-Violation Type: Choose "Red Light Violation"
+> The system calculates a vehicle’s speed from the time taken to travel the given distance and flags vehicles exceeding the speed limit.
 
-ROI (Region of Interest): Manually define the intersection area by selecting 4 corner points
+---
 
-The system analyzes vehicles entering the selected region during a red light and flags violations.
-
-2. Speed Violation Detection Interface
-Input/Output Video & YOLO Model: Same as above
-
-Violation Type: Choose "Speed Violation"
-
-ROI (Speed ROI): Define entry and exit lines
-
-Speed Parameters:
-
-Speed Limit (km/h): Set the maximum allowed speed
-
-Distance Between Lines (m): Enter the distance between entry and exit lines
-
-The system calculates each vehicle’s speed and flags vehicles exceeding the speed limit.
-
-3. Violation Image Storage
+### Violation Image Storage
 Detected violations are saved as screenshots in categorized folders:
-
 ```bash
 violations/red_light/ → Red light violations
 violations/speed/     → Speed violations
 ```
-These images are easily accessible through the "Results" tab in the GUI.
 
-Installation
+You can also browse these images via the **Results** tab in the GUI.
 
-1️⃣ Clone the Repository
+---
+
+## Installation
+
+### 1) Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/M-Raef/Traffic-Violation-Detector.git
 cd traffic-violation-detector
 ```
 
-2️⃣ Install Dependencies
+### 2) Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3️⃣ Run the Application
+### 3) Run the Application
 ```bash
 python traffic_detector_gui.py
 ```
@@ -119,11 +131,11 @@ CREATE TABLE violations (
 ```
 
 Acknowledgments
-YOLO (Ultralytics)
+YOLO (Ultralytics) – Object detection
 
-EasyOCR
+EasyOCR – License plate recognition
 
-OpenCV
+OpenCV – Computer vision operations
 
-SORT Algorithm
+SORT Algorithm – Multi-object tracking
 
