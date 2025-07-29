@@ -55,6 +55,18 @@ The system analyzes traffic light states using **HSV color space** and monitors 
 
 > The system analyzes vehicles entering the selected region during a red light and flags violations.
 
+### Red Light Violation – GUI
+![Red Light Violation GUI](docs/images/red_light_violation_gui.jpg)
+*The main interface for configuring red light violation detection: select input/output videos, choose the YOLO model, set violation type, and define the 4-point ROI covering the intersection.*
+
+### Red Light Violation – Detection Result (Example A)
+![Red Light Violation Result](docs/images/red_light_violation.jpg)
+*A detected violation frame saved by the system, showing the vehicle inside the ROI during a red light. Evidence is stored under `violations/red_light/`.*
+
+### Red Light Violation – Detection Result (Example B)
+![Red Light Violation Result 2](docs/images/red_light_violation_1.jpg)
+*Another example of the red light violation output with bounding boxes and timestamp for evidence.*
+
 ---
 
 ### Speed Violation Interface
@@ -66,6 +78,15 @@ The system analyzes traffic light states using **HSV color space** and monitors 
   - **Distance Between Lines (m)**: Enter the distance between entry and exit lines.
 
 > The system calculates a vehicle’s speed from the time taken to travel the given distance and flags vehicles exceeding the speed limit.
+
+
+### Speed Violation – GUI
+![Speed Violation GUI](docs/images/speed_violation_gui.jpg)
+*The interface for speed checks: define entry/exit lines (Speed ROI), set **Speed Limit (km/h)** and **Distance Between Lines (m)**. The system computes speed from travel time.*
+
+### Speed Violation – Detection Result
+![Speed Violation Result](docs/images/speed_violation.jpg)
+*An example frame where a vehicle exceeding the configured speed limit is flagged. Evidence is stored under `violations/speed/`.*
 
 ---
 
@@ -99,7 +120,7 @@ python traffic_detector_gui.py
 ```
 YOLO model weights (yolo11s.pt) will be downloaded automatically or can be placed manually in the project root.
 
-Project Structure
+### Project Structure
 ```bash
 traffic-violation-detector/
 ├── main.py                 # CLI entry point
@@ -114,7 +135,7 @@ traffic-violation-detector/
 └── plates/                 # Cropped license plates
 ```
 
-Database Schema
+### Database Schema
 SQLite database stores violations:
 
 ```bash
@@ -130,7 +151,7 @@ CREATE TABLE violations (
 );
 ```
 
-Acknowledgments
+### Acknowledgments
 YOLO (Ultralytics) – Object detection
 
 EasyOCR – License plate recognition
